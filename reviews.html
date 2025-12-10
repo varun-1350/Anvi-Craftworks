@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Reviews - Anvi Craftworks</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #2d203f;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 20px;
+      background-color: #3a2a52;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #3a2a52;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .review-box {
+      background: #2d203f;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .name {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .star-input {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .star-input input {
+      display: none;
+    }
+
+    .star-input label {
+      cursor: pointer;
+      color: #666;
+      padding: 0 2px;
+    }
+
+    .star-input input:checked ~ label,
+    .star-input label:hover,
+    .star-input label:hover ~ label {
+      color: gold;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #ffd700;
+      color: #2d203f;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Customer Reviews</h2>
+</header>
+
+<div class="container">
+
+  <!-- Reviews Load Here -->
+  <div id="reviews-area">Loading reviews...</div>
+
+  <hr style="margin:20px 0; border-color:#444;">
+
+  <h3>Leave Your Review</h3>
+
+  <form action="reviews.php" method="post">
+
+    <label>Your Name</label>
+    <input type="text" name="name" required>
+
+    <label>Your Rating</label>
+    <div class="star-input">
+      <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+      <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+      <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+      <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+      <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+    </div>
+
+    <label>Your Review</label>
+    <textarea name="review" rows="4" required></textarea>
+
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <p style="text-align:center; margin-top:20px;">
+    <a href="index.html">⬅ Back to Home</a>
+  </p>
+
+</div>
+
+<script>
+  fetch("reviews.php")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("reviews-area").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>
